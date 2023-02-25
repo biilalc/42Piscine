@@ -24,10 +24,6 @@ int	*ft_range(int min, int max)
 		return (0);
 	i = 0;
 	while (min < max)
-	{
-		p[i] = min;
-		i++;
-		min++;
-	}
+		p[i++] = min++;
 	return (p);
 }
