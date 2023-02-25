@@ -12,7 +12,6 @@
 
 #include <unistd.h>
 #include "ft_stock_str.h"
-//#include "../ex04/ft_strs_to_tab.c"
 
 void	ft_putchar(char c)
 {
@@ -30,44 +29,40 @@ void	ft_putstr(char *str)
 
 void	ft_putnbr(int nb)
 {
-	if (nb == -2147483648)
+	if (nb == -2147483648) //eğer tamsayı en küçük sınırın altındaysa (-2147483648), özel bir işlem yapılır
 	{
-		ft_putchar('-');
-		ft_putchar('2');
-		ft_putnbr(147483648);
+		ft_putchar('-'); //eksi işareti yazdırılır
+		ft_putchar('2'); //2 rakamı yazdırılır
+		ft_putnbr(147483648); //sayının geri kalanı yazdırılır
 	}
-	else if (nb < 0)
+	else if (nb < 0) //eğer tamsayı negatifse
 	{
-		ft_putchar('-');
-		nb = -nb;
-		ft_putnbr(nb);
+		ft_putchar('-'); //eksi işareti yazdırılır
+		nb = -nb; //sayının mutlak değeri hesaplanır
+		ft_putnbr(nb); //mutlak değeri yazdırılır
 	}
-	else if (nb > 9)
+	else if (nb > 9) //eğer tamsayı 9'dan büyükse
 	{
 		ft_putnbr(nb / 10);
 		ft_putnbr(nb % 10);
 	}
-	else
-		ft_putchar(nb + 48);
+	else //eğer tamsayı 0-9 aralığındaysa
+		ft_putchar(nb + 48); //tamsayının ASCII koduna göre karakteri yazdırılır (0-9 aralığı için, tamsayı+48 = karakter)
 }
 
-void	ft_show_tab(struct s_stock_str *par)
+void	ft_show_tab(struct s_stock_str *par) //ft_stock_str yapısını kullanan bir karakter dizisi işleme fonksiyonu
 {
 	int	index;
 
 	index = 0;
-	while (par[index].str != 0)
+	while (par[index].str != 0) //dizinin sonuna kadar döngü devam eder
 	{
-		ft_putstr(par[index].str);
+		ft_putstr(par[index].str); //dizinin "str" elemanı yazdırılır
 		ft_putstr("\n");
-		ft_putnbr(par[index].size);
+		ft_putnbr(par[index].size); //"size" elemanı tamsayı olarak yazdırılır
 		ft_putstr("\n");
-		ft_putstr(par[index].copy);
+		ft_putstr(par[index].copy); //"copy" elemanı yazdırılır
 		ft_putstr("\n");
 		index++;
 	}
 }
-/*int	main(int argc, char **argv)
-{
-	ft_show_tab(ft_strs_to_tab(argc, argv));
-}*/
